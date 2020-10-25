@@ -1,0 +1,18 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# working data files
+dat.txt
+dat.RData
+dat.csv
+flights.db
+palette.RData
+picRecent.png
+picp.jpg
+__temp.txt
+__temp
+__temp2
+__temp3
+__temp4
