@@ -27,6 +27,8 @@
 
 ----
 
+![책소개](http://ds.sumeun.org/wp-content/uploads/2019/02/bigData2nd_ad02.png)
+
 ## 책 차례
 
 * 서문 1
