@@ -36,7 +36,7 @@
     - 1 들어가기 3
     - 1.1 R 
 
-* 2 R의 패키지(Packages) 5
+* [2 R의 패키지(Packages)](https://github.com/Sumeun/DSwithRv2/blob/main/02_Packages.R) 5
     - 2.1 패키지 설치 
     - 2.2 패키지 관련 정보 
     - 2.3 패키지 불러오기/확인하기/제거하기 
