@@ -163,27 +163,15 @@ print(DT3)
 coln = 'wt2'
 DF3[ ,coln] = DF3$hp * DF3$qsec
 DF3[[coln]] = DF3$hp * DF3$qsec
-#coln = 'wt'
-#TB3 <- TB2 %>% mutate_at(coln, funs(hp*qsec))
-# funs() is soft deprecated as of dplyr 0.8.0
-# Please use a list of either functions or lambdas: 
-TB2 <- TB2 %>% mutate(wt2 = NA)
-TB3 <- TB2 %>% mutate_at(coln, ~ hp*qsec)
-# lambda
-coln = c('wt', 'hp')
-TB3 <- TB2 %>% mutate_at(coln, ~ .+1) # function(x) x+1
-DT3[, c(coln):=hp*qsec]
+TB3 = TB3 %>% mutate(UQ(rlang::sym(coln)) :=  hp*qsec)
+DT3[, `:=`(c(coln), hp*qsec)]
 
-# 열 수정
 coln = c('hp', 'qsec')
-DF3[, coln] = lapply(DF3[,coln], function(x) x*2)
-DF3[, coln] = do.call(data.frame, lapply(DF3[,coln], function(x) x*2))
-TB3 <- TB3 %>% mutate_at(coln, funs(.*2))
-#Warning message:
-#  funs() is soft deprecated as of dplyr 0.8.0
-#  Please use a list of either functions or lambdas: 
-TB3 <- TB3 %>% mutate_at(coln, ~ .*2)
-DT3[, c(coln):=lapply(.SD, function(x) x*2), .SDcols=coln]
+DF3[, coln] = lapply(DF3[, coln], function(x) x*2)
+DF3[, coln] = do.call(data.frame, lapply(DF3[, coln], function(x) x*2))
+#TB3 <- TB3 %>% mutate_at(coln, funs(.*2))
+TB3 <- TB3 %>% mutate_at(coln, ~.*2)
+DT3[, `:=`(c(coln), lapply(.SD, function(x) x*2)), .SDcols=coln]
 print(DT3)
 
 # 10.1.7 transmute
