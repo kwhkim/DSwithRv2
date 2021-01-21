@@ -75,8 +75,6 @@ tb %>% slice(c(2:3, 4, 5))
 
 tb[tb$mpg>30, ]
 
-
-
 filter(tb, mpg>30)
 tb %>% filter(., mpg>30)
 tb %>% filter(mpg>30)
@@ -87,10 +85,6 @@ tb <- tb %>% slice(3:5)
 tb[, c(1,3)]
 select(tb, c(1,3))
 tb %>% select(c(1,3))
-
-
-tb <- tb %>% slice(3:5)
-tb[, c(1,3)]
 
 tb[, c("cyl", "hp")]
 select(tb, c("cyl", "hp"))
@@ -121,7 +115,7 @@ slice(tb, 1, 2)
 ##  구문                  의미
 ## starts_with('ab')   ab로 시작하는
 ## ends_with('yz')     yz로 끝나는
-## contains_with('ef)  ef를 포함하는
+## contains('ef')  ef를 포함하는
 ## one_of(coln)        문자열 벡터 coln의 각 원소와 일치하는
 ## matches('..[cd]')   정규표현식 ..[cd]와 대응하는
 
@@ -223,16 +217,12 @@ tb %>% group_by(am) %>% summarise(mean(qsec))
 
 ## 5.3.6
 
-
 tb %>% summarise(range(hp))
 #Error: Column `range(hp)` must be length 1 (a summary value), not 2 
 ## 책과 다른 부분 3 : summarise 에 벡터가 아니라 range 를 넣은 경우 오류가 나온다고 적혀있지만 
 ## 최근 버전에서는 실제로 결과값이 나옴
 
-
-
 tb %>% group_by(am) %>% do(head(., n=2))
-
 
 tb %>% group_by(am) %>% do(summary(.))
 #Error: Results 1, 2 must be data frames, not table
