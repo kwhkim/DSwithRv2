@@ -22,12 +22,14 @@ Sys.getlocale('LC_CTYPE')
 
 scan(what="", sep='\n', quote='')
 영어 한글 \\ "How can you", I thought 'Hmmm"\\'
+ 
 
 #Read 1 item
 #[1] "영어 한글 \\\\ \"How can you\", I thought 'Hmmm\"\\\\'"
 
 scan(what="", sep='\n', quote='') # 윈도우 R의 경우 û, é가 제대로 입력되지 않는다.
 불어 brûlée 한자 鬼 \ 와 ", '
+
 
 #Read 1 item
 #[1] "불어 brulee 한자 鬼 \\ 와 \", '"

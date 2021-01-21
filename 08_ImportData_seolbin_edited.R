@@ -269,6 +269,7 @@ install.packages('haven')
 
 # 기본값이 없는 인수에 대한 오류
 
+# install.packages('rio')
 library(foreign)
 #read.spss() # SPSS
 #read.dta() # Stata

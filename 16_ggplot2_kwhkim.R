@@ -202,7 +202,7 @@ t + facet_wrap(~ drv) + labs(subtitle='+ facet_wrap(~ drv)')
 t + facet_wrap(~ drv + year) + labs(subtitle='+ facet_wrap(~ drv + year)')
 
 
-t+ facet_grid(drv ~ year, scales = "free")
+t + facet_grid(drv ~ year, scales = "free")
 t + facet_grid(drv ~ year, scales = "free_x") + labs(subtitle='+ facet_grid(drv ~ year, scales = "free_x")')
 t + facet_grid(drv ~ year, scales = "free_y") + labs(subtitle='+ facet_grid(drv ~ year, scales = "free_y")')
 

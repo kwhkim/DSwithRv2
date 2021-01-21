@@ -6,7 +6,6 @@ c(pi, 1e-3, sin(3))
 c("John","Mary")
 
 person = c(name = "John", likes = "Mary", loves = "Suzy")
-abc.ddd
 # repeat
 rep(1, 10)
 rep("ABC", 10)
@@ -322,3 +321,4 @@ reshape2::acast(dfHeight, school ~ gender ~ number, value.var = 'height')
 ## 두 배열 합치기    abind::abind(arr1, arr2, along= )
 ## 데이터 프레임으로 as.data.frame.table()
 ## 다시 배열로       reshape2::acast(date=, formula=, fun.aggregate=, value.var=)
+
