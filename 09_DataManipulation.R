@@ -32,6 +32,7 @@ dat <- data.frame(gender=c('M','M','M','M','M','F','F','F','F','F'),
                   h=c(170,180,190,180,170,150,160,170,160,150),
                   w=c(80,70,100,80,60,50,50,60,60,50))
 dat$BMI <- dat$w/(dat$h/100)^2
+
 table(dat$gender, dat$num)
 
 tapply(dat$h, list(dat$gender, dat$num), mean)
@@ -65,6 +66,41 @@ by(dat, list(dat$gender, dat$num), summary)
 # # ##         Median :1   Median :175.0   Median :80   Median :26.19
 # # ##         Mean   :1   Mean   :175.0   Mean   :80   Mean   :26.19
 # # ## ...
+
+# 위의 함수들은 자세히 설명하지 않았다. 
+# 왜냐하면 위의 함수들은 dplyr 또는 data.table 패키지를 사용해서도
+# 동일한 결과를 산출할 수 있기 때문이다.
+# 그리고 요즘에는 잘 사용하지 않는 함수들이다. 
+# 흔히 말하는 legacy code라고 말할 수 있다. 
+
+# 하지만 그 의미를 이해할 필요도 있으므로 dplyr로 번역을 해보았다. 
+tapply(dat$h, list(dat$gender, dat$num), mean)
+require(dplyr); require(tidyr)
+dat %>% group_by(gender, num) %>% summarise(mean = mean(h)) %>% spread(key='num', value='mean')
+
+aggregate(h ~ gender + num, sum, data=dat)
+dat %>% group_by(gender, num) %>% summarise(h=sum(h))
+
+aggregate(h + w ~ gender + num, sum, data=dat)
+dat %>% group_by(gender, num) %>% summarise(h=sum(h+w))
+
+aggregate(h + w ~ gender + num, max, data=dat)
+dat %>% group_by(num, gender) %>% summarise(h=max(h+w))
+
+aggregate(cbind(h,w)~gender+num, sum, data=dat)
+dat %>% group_by(num, gender) %>% summarise(h=sum(h), w=sum(w))
+
+aggregate(. ~ gender + num, sum, data=dat)
+dat %>% group_by(num, gender) %>% summarise_all(sum)
+
+aggregate(dat, list(dat$gender, dat$num), length)
+dat %>% group_by(num, gender) %>% summarise_all(length)
+
+by(dat, list(dat$gender, dat$num), summary)
+# dplyr로 구현하기 힘듦
+require(data.table)
+datDT <- data.table(dat)
+datDT[,{print(paste(gender, num));print(summary(.SD))}, by=c('gender', 'num')]
 
 
 # 9.1.3 sweep, mapply, rapply
